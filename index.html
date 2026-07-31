@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NipNop - Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TELA DE AUTENTICAÇÃO (CADASTRO / LOGIN) -->
+  <div id="auth-screen" class="auth-container">
+    <div class="auth-card">
+      <div class="brand-logo">
+        <h2>NipNop</h2>
+        <p>Conecte-se de forma simples e profissional.</p>
+      </div>
+      
+      <form id="register-form">
+        <h3>Criar sua conta</h3>
+        <div class="input-group">
+          <label for="username">Nome de Usuário</label>
+          <input type="text" id="username" placeholder="Ex: alex_dev" required>
+        </div>
+        <div class="input-group">
+          <label for="avatar-url">URL da Foto de Perfil (Opcional)</label>
+          <input type="url" id="avatar-url" placeholder="https://exemplo.com/foto.jpg">
+        </div>
+        <button type="submit" class="btn-primary">Entrar no NipNop</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- INTERFACE PRINCIPAL DO APP -->
+  <div id="app-screen" class="app-container hidden">
+    
+    <!-- BARRA LATERAL (SIDEBAR) -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="user-profile">
+          <img id="current-user-avatar" src="" alt="Avatar">
+          <span id="current-user-name">Usuário</span>
+        </div>
+        <button id="btn-logout" class="btn-logout" title="Sair">Sair</button>
+      </div>
+
+      <!-- SESSÃO DE AMIGOS -->
+      <div class="friends-section">
+        <div class="section-title">
+          <span>Amigos</span>
+        </div>
+        
+        <form id="add-friend-form" class="add-friend-form">
+          <input type="text" id="friend-name" placeholder="Nome do amigo..." required>
+          <button type="submit" class="btn-secondary">+</button>
+        </form>
+
+        <ul id="friends-list" class="friends-list">
+          <!-- Lista de amigos gerada via JS -->
+        </ul>
+      </div>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL DO CHAT -->
+    <main class="chat-area">
+      <div id="chat-header" class="chat-header">
+        <span id="chat-title">Selecione um amigo para conversar</span>
+      </div>
+
+      <div id="messages-container" class="messages-container">
+        <!-- Mensagens serão inseridas aqui via JS -->
+      </div>
+
+      <form id="chat-form" class="chat-form hidden">
+        <input type="text" id="message-input" placeholder="Digite sua mensagem..." autocomplete="off" required>
+        <button type="submit" class="btn-primary">Enviar</button>
+      </form>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
