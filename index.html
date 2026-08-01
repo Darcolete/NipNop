@@ -61,139 +61,134 @@
   </div>
 
   <div id="app-screen" class="app-container hidden">
-    
-    <aside class="sidebar" id="sidebar">
+
+    <aside id="sidebar" class="sidebar">
       <div class="toggle-sidebar-wrapper">
-        <button id="btn-toggle-sidebar" class="btn-toggle-sidebar" title="Recolher/Expandir Amigos">◀</button>
+        <button id="btn-toggle-sidebar" class="btn-toggle-sidebar" title="Recolher / Expandir Amigos">◀</button>
       </div>
 
       <div class="sidebar-header">
-        <div class="user-profile" id="my-profile-btn" title="Ver meu perfil">
-          <div class="avatar-sidebar-container">
-            <img id="current-user-avatar" src="" alt="Avatar" title="Clique para ver foto de perfil">
-          </div>
-          <div class="user-details-sidebar">
-            <span id="current-user-name">Usuário</span>
-            <div class="coins-badge">🪙 <span id="current-user-coins">0</span></div>
+        <div id="my-profile-btn" class="user-profile-summary">
+          <img id="current-user-avatar" src="" alt="Avatar" class="avatar-medium">
+          <div class="user-info">
+            <h4 id="current-user-name">Usuário</h4>
+            <p>🟡 <span id="current-user-coins">0</span> Moedas</p>
           </div>
         </div>
-        <button id="btn-logout" class="btn-logout" title="Sair">Sair</button>
+        <button id="btn-logout" class="btn-logout" title="Sair">🚪</button>
       </div>
 
-      <div class="friends-section">
-        <div class="section-title">
-          <span>Amigos</span>
-        </div>
-        
-        <form id="add-friend-form" class="add-friend-form">
+      <div class="add-friend-section">
+        <form id="add-friend-form">
           <input type="text" id="friend-name" placeholder="Nome do amigo..." required>
           <button type="submit" class="btn-secondary">+</button>
         </form>
+      </div>
 
+      <div class="friends-list-container">
+        <h3>Seus Amigos</h3>
         <ul id="friends-list" class="friends-list"></ul>
       </div>
     </aside>
 
     <main class="main-content">
-      
-      <nav class="content-nav">
-        <button id="nav-feed" class="nav-tab active">🏠 Feed Inicial</button>
-        <button id="nav-chat" class="nav-tab">💬 Bate-Papo</button>
-        <button id="nav-games" class="nav-tab">🎮 Games</button>
-        <button id="nav-profile" class="nav-tab">👤 Perfil</button>
-        <button id="nav-new-post" class="nav-tab">➕ Nova Publicação</button>
-        <button id="nav-notifications" class="nav-tab">🔔 Notificações</button>
+      <nav class="top-nav">
+        <button id="nav-feed" class="nav-item active">Feed</button>
+        <button id="nav-chat" class="nav-item">Conversas</button>
+        <button id="nav-games" class="nav-item">Jogos</button>
+        <button id="nav-profile" class="nav-item">Perfil</button>
+        <button id="nav-new-post" class="nav-item">Nova Publicação</button>
+        <button id="nav-notifications" class="nav-item">Notificações</button>
       </nav>
 
       <section id="view-feed" class="view-section">
-        <div class="feed-header">
-          <h2>Feed de Publicações</h2>
-        </div>
         <div id="feed-posts-container" class="posts-container"></div>
       </section>
 
       <section id="view-chat" class="view-section hidden">
-        <div id="chat-header" class="chat-header">
-          <span id="chat-title">Selecione um amigo para conversar</span>
+        <div class="chat-container">
+          <h3 id="chat-title">Selecione um amigo para conversar</h3>
+          <div id="messages-container" class="messages-container"></div>
+          <form id="chat-form" class="chat-form">
+            <input type="text" id="message-input" placeholder="Escreva sua mensagem..." required>
+            <button type="submit" class="btn-primary">Enviar</button>
+          </form>
         </div>
-        <div id="messages-container" class="messages-container"></div>
-        <form id="chat-form" class="chat-form hidden">
-          <input type="text" id="message-input" placeholder="Digite sua mensagem..." autocomplete="off" required>
-          <button type="submit" class="btn-primary">Enviar</button>
-        </form>
       </section>
 
       <section id="view-games" class="view-section hidden">
-        <div class="games-hub-header">
-          <button id="tab-game-draw" class="game-hub-tab active">🎨 Lousa Coop</button>
-          <button id="tab-game-snake" class="game-hub-tab">🐍 Snake Multiplayer</button>
+        <div id="subview-games-hub" class="games-hub-grid">
+          <div id="card-game-draw" class="game-card">
+            <div class="game-icon">🎨</div>
+            <h3>Lousa Co-op</h3>
+            <p>Desenhe em tempo real com amigos.</p>
+          </div>
+          <div id="card-game-snake" class="game-card">
+            <div class="game-icon">🐍</div>
+            <h3>Snake Multiplayer</h3>
+            <p>Jogue sozinho, em dupla ou desafie Bots!</p>
+          </div>
         </div>
 
-        <div id="subview-draw" class="game-subview">
-          <div class="canvas-toolbar">
-            <div class="tool-group">
-              <button id="btn-tool-pen" class="btn-tool active" title="Caneta">✏️ Caneta</button>
-              <button id="btn-tool-eraser" class="btn-tool" title="Borracha">🧽 Borracha</button>
-            </div>
-
-            <div class="tool-group">
-              <label>Cor: <input type="color" id="draw-color" value="#000000"></label>
-              <label>Tamanho: <input type="range" id="draw-size" min="1" max="50" value="5"></label>
-              <label>Opacidade: <input type="range" id="draw-opacity" min="0.1" max="1.0" step="0.1" value="1.0"></label>
-              <label>Estilo:
-                <select id="draw-cap">
-                  <option value="round">Redondo</option>
-                  <option value="square">Quadrado</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="tool-group">
-              <button id="btn-clear-canvas" class="btn-danger">Limpar Tudo</button>
-            </div>
-
-            <div class="tool-group room-actions">
+        <div id="subview-draw" class="coop-draw-container hidden">
+          <div class="subview-header">
+            <button id="btn-back-hub-draw" class="btn-secondary">← Voltar</button>
+            <h3>Lousa Colaborativa</h3>
+          </div>
+          <div class="coop-controls">
+            <button id="btn-tool-pen" class="sub-tab active">Lápis</button>
+            <button id="btn-tool-eraser" class="sub-tab">Borracha</button>
+            <input type="color" id="draw-color" value="#000000">
+            <input type="range" id="draw-size" min="1" max="30" value="5">
+            <button id="btn-clear-canvas" class="btn-secondary">Limpar Tela</button>
+            <div style="margin-left: auto; display: flex; gap: 0.5rem;">
               <select id="select-invite-friend"></select>
-              <button id="btn-invite-friend" class="btn-primary">Convidar</button>
-              <button id="btn-kick-user" class="btn-danger">Expulsar Usuário</button>
+              <button id="btn-invite-friend" class="btn-primary">Convidar Amigo</button>
             </div>
           </div>
-
-          <div class="canvas-container">
-            <canvas id="coop-canvas" width="800" height="500"></canvas>
-          </div>
+          <canvas id="coop-canvas" width="700" height="450"></canvas>
         </div>
 
-        <div id="subview-snake" class="game-subview hidden">
-          <div id="snake-lobby" class="snake-lobby-card">
-            <h3>🐍 Sala de Espera - Snake Multiplayer</h3>
-            <p>Objetivo: Pegar <strong>25 frutas</strong> primeiro para vencer e ganhar <strong>100 moedas</strong>! 🪙</p>
-            
-            <div class="lobby-players">
-              <h4>Jogadores na Sala:</h4>
-              <ul id="snake-players-list"></ul>
-            </div>
+        <div id="subview-snake" class="snake-container hidden">
+          <div class="subview-header">
+            <button id="btn-back-hub-snake" class="btn-secondary">← Voltar</button>
+            <h3>Snake Arcade</h3>
+          </div>
 
-            <div class="lobby-controls">
+          <div id="snake-lobby">
+            <h4>Lobby de Espera</h4>
+            <ul id="snake-players-list"></ul>
+            <div style="margin: 1rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
               <select id="select-snake-friend"></select>
               <button id="btn-invite-snake-friend" class="btn-secondary">Convidar Amigo</button>
-              <button id="btn-start-snake-game" class="btn-primary btn-play">▶ PLAY (Iniciar)</button>
+              <label for="snake-bots-count" style="margin-left: 10px; font-weight: 600;">Bots:</label>
+              <select id="snake-bots-count">
+                <option value="0">Sem Bots</option>
+                <option value="1">1 Bot</option>
+                <option value="2">2 Bots</option>
+                <option value="3">3 Bots</option>
+              </select>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+              <button id="btn-start-snake-game" class="btn-primary">Iniciar Multiplayer Local (Setas / W A S D)</button>
+              <button id="btn-start-snake-singleplayer" class="btn-secondary">Iniciar Solo</button>
             </div>
           </div>
 
-          <div id="snake-game-screen" class="snake-game-wrapper hidden">
-            <div class="snake-status-bar">
-              <span id="snake-score-p1">P1 Frutas: 0/25</span>
-              <span id="snake-score-p2">P2 Frutas: 0/25</span>
+          <div id="snake-game-screen" class="hidden">
+            <div class="snake-scores">
+              <span id="snake-score-p1">P1: 0</span>
+              <span id="snake-score-p2">P2: 0</span>
             </div>
+            <div id="snake-bots-scores" style="text-align: center; margin-bottom: 5px; font-weight: 600;"></div>
             <canvas id="snake-canvas" width="600" height="400"></canvas>
             
-            <div class="snake-controls-mobile">
-              <button id="btn-snake-up">⬆️</button>
+            <div class="snake-mobile-controls">
+              <button id="snake-btn-up">▲</button>
               <div>
-                <button id="btn-snake-left">⬅️</button>
-                <button id="btn-snake-down">⬇️</button>
-                <button id="btn-snake-right">➡️</button>
+                <button id="snake-btn-left">◄</button>
+                <button id="snake-btn-down">▼</button>
+                <button id="snake-btn-right">►</button>
               </div>
             </div>
           </div>
@@ -201,37 +196,40 @@
       </section>
 
       <section id="view-profile" class="view-section hidden">
-        <div class="profile-header-card" id="profile-header-card">
-          <div class="profile-avatar-wrapper" id="profile-avatar-wrapper">
-            <img id="profile-view-avatar" src="" alt="Avatar" title="Clique para visualizar em tamanho grande">
-            <button id="btn-change-avatar" class="btn-change-avatar hidden" title="Alterar Foto de Perfil">📷</button>
+        <div class="profile-header">
+          <div class="profile-avatar-wrapper">
+            <img id="profile-view-avatar" src="" alt="Avatar do Usuário" class="avatar-large">
+            <button id="btn-change-avatar" class="btn-change-avatar hidden">📷</button>
           </div>
-          <div class="profile-info">
+          <div class="profile-details">
             <h2 id="profile-view-name">Nome do Usuário</h2>
-            <p id="profile-view-stats">0 Publicações</p>
-            <p class="profile-coins-text">🪙 Moedas: <strong id="profile-view-coins">0</strong></p>
+            <p>🟡 <span id="profile-view-coins">0</span> Moedas</p>
+            <p id="profile-view-stats">Publicações: 0</p>
+            
+            <div id="profile-customize-panel" class="profile-customize-panel hidden">
+              <div>
+                <label for="profile-bg-color">Cor de Fundo:</label>
+                <input type="color" id="profile-bg-color" value="#ffffff">
+              </div>
+              <div>
+                <label for="profile-name-color">Cor do Nome:</label>
+                <select id="profile-name-color">
+                  <option value="#1f2937">Escuro Padrão</option>
+                  <option value="#2ea043">Verde NipNop</option>
+                  <option value="#ef4444">Vermelho</option>
+                  <option value="#3b82f6">Azul</option>
+                  <option value="#8b5cf6">Roxo</option>
+                  <option value="#f59e0b">Dourado</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div id="profile-customize-panel" class="profile-customize-panel hidden">
-          <span>🎨 Personalizar Perfil:</span>
-          <div class="color-picker-item">
-            <label for="profile-bg-color">Cor de Fundo:</label>
-            <input type="color" id="profile-bg-color" value="#f4f7f5">
-          </div>
-          <div class="color-picker-item">
-            <label for="profile-name-color">Cor do Nick:</label>
-            <select id="profile-name-color">
-              <option value="#000000">Preto</option>
-              <option value="#333333">Cinza Escuro</option>
-              <option value="#777777">Cinza Médio</option>
-              <option value="#cccccc">Cinza Claro</option>
-              <option value="#ffffff">Branco</option>
-            </select>
-          </div>
+        <div class="profile-posts-section">
+          <h3>Publicações do Usuário</h3>
+          <div id="posts-container" class="posts-container"></div>
         </div>
-
-        <div id="posts-container" class="posts-container"></div>
       </section>
 
       <section id="view-new-post" class="view-section hidden">
@@ -263,8 +261,8 @@
   </div>
 
   <div id="image-modal" class="image-modal hidden">
-    <span id="close-image-modal" class="modal-close">&times;</span>
-    <img id="modal-image-src" class="modal-content" src="" alt="Foto Ampliada">
+    <span id="close-image-modal" class="close-modal">&times;</span>
+    <img id="modal-image-src" class="modal-content" src="" alt="Imagem Ampliada">
   </div>
 
   <script src="script.js"></script>
